@@ -1,0 +1,31 @@
+name: ChocoSMP
+version: '1.0.0'
+main: com.chocosmp.ChocoSMP
+api-version: '26.1'
+description: ChocoSMP shop, sell, stash ve spawn sistemi
+depend: [Vault]
+softdepend: [Essentials]
+commands:
+  shop:
+    description: Marketi açar
+    usage: /shop
+    aliases: [market]
+  sell:
+    description: Envanterindeki itemleri satar
+    usage: /sell [hand]
+  stash:
+    description: Stash'ini açar
+    usage: /stash
+  spawn:
+    description: Spawn'a ışınlanırsın
+    usage: /spawn
+  setspawn:
+    description: Spawn noktasını ayarlar
+    usage: /setspawn
+permissions:
+  chocosmp.admin:
+    description: Yönetici komutları
+    default: op
+  chocosmp.spawn.bypass:
+    description: /spawn bekleme süresini atlar
+    default: op

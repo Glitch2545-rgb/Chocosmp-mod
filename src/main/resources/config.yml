@@ -1,0 +1,2 @@
+# /spawn için bekleme süresi (saniye). 0 = anında.
+spawn-delay-seconds: 3
