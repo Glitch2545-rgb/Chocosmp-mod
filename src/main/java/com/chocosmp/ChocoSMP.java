@@ -11,6 +11,7 @@ public final class ChocoSMP extends JavaPlugin {
     private Economy economy;
     private ShopManager shop;
     private StashManager stash;
+    private SidebarManager sidebar;
 
     @Override
     public void onEnable() {
@@ -28,11 +29,20 @@ public final class ChocoSMP extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new GuiListener(this), this);
 
+        sidebar = new SidebarManager(this);
+        getServer().getPluginManager().registerEvents(sidebar, this);
+        sidebar.start();
+
         Commands cmds = new Commands(this);
         for (String name : new String[]{"shop", "sell", "stash", "spawn", "setspawn"}) {
             if (getCommand(name) != null) getCommand(name).setExecutor(cmds);
         }
         getLogger().info("ChocoSMP açıldı.");
+    }
+
+    @Override
+    public void onDisable() {
+        if (sidebar != null) sidebar.stop();
     }
 
     private boolean setupEconomy() {

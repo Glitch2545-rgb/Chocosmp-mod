@@ -1,2 +1,14 @@
 # /spawn için bekleme süresi (saniye). 0 = anında.
 spawn-delay-seconds: 3
+
+# Sağdaki scoreboard. Yer tutucular: %money% %online% %ping% %name%
+sidebar:
+  enabled: true
+  title: "<gold><bold>ChocoSMP"
+  lines:
+    - " "
+    - "<yellow>Para <white>» <green>$%money%"
+    - "<yellow>Oyuncu <white>» <aqua>%online%"
+    - "<yellow>Ping <white>» <green>%ping%ms"
+    - " "
+    - "<gray>chocosmp.funserver.top"

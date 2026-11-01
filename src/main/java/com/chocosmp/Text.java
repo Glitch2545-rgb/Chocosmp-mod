@@ -47,6 +47,18 @@ public final class Text {
         return String.format(Locale.US, "$%,.2f", v);
     }
 
+    public static String shortNum(double v) {
+        if (v >= 1_000_000_000d) return trim(v / 1_000_000_000d) + "B";
+        if (v >= 1_000_000d) return trim(v / 1_000_000d) + "M";
+        if (v >= 1_000d) return trim(v / 1_000d) + "k";
+        return trim(v);
+    }
+
+    private static String trim(double v) {
+        String s = String.format(Locale.US, "%.1f", v);
+        return s.endsWith(".0") ? s.substring(0, s.length() - 2) : s;
+    }
+
     public static String pretty(Material m) {
         return m.name().toLowerCase(Locale.ROOT).replace('_', ' ');
     }
