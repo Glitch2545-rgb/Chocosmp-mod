@@ -1,5 +1,7 @@
 package com.chocosmp;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,12 +19,13 @@ import java.util.Map;
 import java.util.UUID;
 
 public final class SidebarManager implements Listener {
-    private static final String DEFAULT_TITLE = "<gold><bold>ChocoSMP";
+    private static final String DEFAULT_TITLE = "<white>\uE000";
     private static final List<String> DEFAULT_LINES = List.of(
             " ",
-            "<yellow>Para <white>» <green>$%money%",
-            "<yellow>Oyuncu <white>» <aqua>%online%",
-            "<yellow>Ping <white>» <green>%ping%ms",
+            "<white>%rank% <yellow>%name%",
+            "<white>\uE001 <gray>Para: <green>$%money%",
+            "<white>\uE002 <gray>Oyuncular: <aqua>%online%",
+            "<white>\uE003 <gray>Gecikme: <green>%ping%ms",
             " ",
             "<gray>chocosmp.funserver.top"
     );
@@ -93,8 +96,19 @@ public final class SidebarManager implements Listener {
                     .replace("%money%", money)
                     .replace("%online%", online)
                     .replace("%ping%", ping)
+                    .replace("%rank%", Text.rankIcon(p))
                     .replace("%name%", p.getName());
             t.prefix(Text.c(line.isEmpty() ? " " : line));
+        }
+
+        if (plugin.getConfig().getBoolean("tab.enabled", true)) {
+            p.sendPlayerListHeaderAndFooter(
+                    Component.text("\uE000", NamedTextColor.WHITE),
+                    Text.c("<gray>Oyuncu: <white>" + online + " <dark_gray>| <yellow>chocosmp.funserver.top"));
+            String icon = Text.rankIcon(p);
+            Component name = Component.text(p.getName(), NamedTextColor.WHITE);
+            p.playerListName(icon.isEmpty() ? name
+                    : Component.text(icon + " ", NamedTextColor.WHITE).append(name));
         }
     }
 

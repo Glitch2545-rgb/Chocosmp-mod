@@ -75,9 +75,8 @@ public final class ShopManager {
 
     public void openMain(Player p) {
         Gui gui = new Gui(Gui.Type.MAIN, "");
-        Inventory inv = Bukkit.createInventory(gui, 27, Text.c("<gold><bold>ChocoSMP Market"));
+        Inventory inv = Bukkit.createInventory(gui, 27, Text.menu(false, "<gold><bold>ChocoSMP Market"));
         gui.setInventory(inv);
-        for (int i = 0; i < 27; i++) inv.setItem(i, filler());
         int n = 0;
         for (Category c : categories.values()) {
             if (n >= CAT_SLOTS.length) break;
@@ -92,9 +91,8 @@ public final class ShopManager {
 
     public void openCategory(Player p, Category c) {
         Gui gui = new Gui(Gui.Type.CATEGORY, c.id());
-        Inventory inv = Bukkit.createInventory(gui, 54, Text.c(c.name()));
+        Inventory inv = Bukkit.createInventory(gui, 54, Text.menu(true, c.name()));
         gui.setInventory(inv);
-        for (int i = 45; i < 54; i++) inv.setItem(i, filler());
         for (int i = 0; i < c.items().size() && i < 45; i++) {
             inv.setItem(i, shopIcon(c.items().get(i)));
         }

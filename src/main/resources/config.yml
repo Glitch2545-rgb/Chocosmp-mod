@@ -1,14 +1,20 @@
 # /spawn için bekleme süresi (saniye). 0 = anında.
 spawn-delay-seconds: 3
 
-# Sağdaki scoreboard. Yer tutucular: %money% %online% %ping% %name%
+# Sağdaki scoreboard. Yer tutucular: %money% %online% %ping% %name% %rank%
+# \uE000 logo, \uE001 para, \uE002 oyuncu, \uE003 ping, \uE004 yıldız (resource pack gerekir)
 sidebar:
   enabled: true
-  title: "<gold><bold>ChocoSMP"
+  title: "<white>\uE000"
   lines:
     - " "
-    - "<yellow>Para <white>» <green>$%money%"
-    - "<yellow>Oyuncu <white>» <aqua>%online%"
-    - "<yellow>Ping <white>» <green>%ping%ms"
+    - "<white>%rank% <yellow>%name%"
+    - "<white>\uE001 <gray>Para: <green>$%money%"
+    - "<white>\uE002 <gray>Oyuncular: <aqua>%online%"
+    - "<white>\uE003 <gray>Gecikme: <green>%ping%ms"
     - " "
     - "<gray>chocosmp.funserver.top"
+
+# Tablist üst/alt yazısı ve rütbe rozeti
+tab:
+  enabled: true

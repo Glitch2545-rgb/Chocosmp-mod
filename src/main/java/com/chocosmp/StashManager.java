@@ -79,7 +79,7 @@ public final class StashManager {
 
     public void open(Player p) {
         Gui gui = new Gui(Gui.Type.STASH, "");
-        Inventory inv = Bukkit.createInventory(gui, 54, Text.c("<light_purple><bold>Stash"));
+        Inventory inv = Bukkit.createInventory(gui, 54, Text.menu(true, "<light_purple><bold>Stash"));
         gui.setInventory(inv);
         List<ItemStack> list = data.getOrDefault(p.getUniqueId(), List.of());
         for (int i = 0; i < list.size() && i < 54; i++) {

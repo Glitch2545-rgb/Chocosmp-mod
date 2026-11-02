@@ -29,3 +29,15 @@ permissions:
   chocosmp.spawn.bypass:
     description: /spawn bekleme süresini atlar
     default: op
+  chocosmp.rank.vip:
+    description: Tablist ve scoreboard'da VIP rozeti
+    default: false
+  chocosmp.rank.mvp:
+    description: Tablist ve scoreboard'da MVP rozeti
+    default: false
+  chocosmp.rank.mod:
+    description: Tablist ve scoreboard'da MOD rozeti
+    default: false
+  chocosmp.rank.admin:
+    description: Tablist ve scoreboard'da ADMIN rozeti
+    default: op

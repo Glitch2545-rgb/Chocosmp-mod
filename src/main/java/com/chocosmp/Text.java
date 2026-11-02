@@ -1,9 +1,12 @@
 package com.chocosmp;
 
+import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -57,6 +60,26 @@ public final class Text {
     private static String trim(double v) {
         String s = String.format(Locale.US, "%.1f", v);
         return s.endsWith(".0") ? s.substring(0, s.length() - 2) : s;
+    }
+
+    private static final Key MENU_FONT = Key.key("choco", "menu");
+
+    /** Resource pack'teki özel menü arka planını başlık olarak döndürür. big=false 3 satır, big=true 6 satır. */
+    public static Component menu(boolean big, String nameMini) {
+        Component back8 = Component.text("\uF808").font(MENU_FONT);
+        Component bg = Component.text(big ? "\uE101" : "\uE100", NamedTextColor.WHITE).font(MENU_FONT);
+        Component back = Component.text("\uF809").font(MENU_FONT);
+        Component fwd8 = Component.text("\uF80A").font(MENU_FONT);
+        return Component.text().append(back8).append(bg).append(back).append(fwd8).append(c(nameMini)).build();
+    }
+
+    /** Oyuncunun rütbe rozeti. Yetkiye göre: chocosmp.rank.admin / mod / mvp / vip */
+    public static String rankIcon(Player p) {
+        if (p.hasPermission("chocosmp.rank.admin")) return "\uE008";
+        if (p.hasPermission("chocosmp.rank.mod")) return "\uE007";
+        if (p.hasPermission("chocosmp.rank.mvp")) return "\uE006";
+        if (p.hasPermission("chocosmp.rank.vip")) return "\uE005";
+        return "";
     }
 
     public static String pretty(Material m) {
